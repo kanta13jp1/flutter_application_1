@@ -29,17 +29,61 @@ class _RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('テストだよ Startup Name Generator'),
+        title: Text('テストだよ Startup Name Generator => Layout Demo'),
       ),
-      body: _buildSuggestions(),
+      // body: _buildSuggestions(),
+      body: Column(
+        children: [
+          titleSection,
+        ],
+      ),
     );
   }
+
+  Widget titleSection = Container(
+    padding: const EdgeInsets.all(32),
+    child: Row(
+      children: [
+        Expanded(
+          /*1*/
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /*2*/
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: const Text(
+                  'Oeschinen Lake Campground',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                'Kandersteg, Switzerland',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                ),
+              ),
+            ],
+          ),
+        ),
+        /*3*/
+        Icon(
+          Icons.star,
+          color: Colors.red[500],
+        ),
+        const Text('41'),
+      ],
+    ),
+  );
 
   Widget _buildSuggestions() {
     return ListView.builder(
         padding: EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
+          if (i.isOdd) return Divider();
+          /*2*/
 
           final index = i ~/ 2; /*3*/
           if (index >= _suggestions.length) {
