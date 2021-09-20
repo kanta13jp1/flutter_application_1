@@ -27,6 +27,18 @@ class _RandomWordsState extends State<RandomWords> {
   final _biggerFont = TextStyle(fontSize: 18.0);
   @override
   Widget build(BuildContext context) {
+    Color color = Theme
+        .of(context)
+        .primaryColor;
+
+    Widget buttonSection = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButtonColumn(color, Icons.call, 'CALL'),
+        _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+        _buildButtonColumn(color, Icons.share, 'SHARE'),
+      ],
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text('テストだよ Startup Name Generator => Layout Demo'),
@@ -35,6 +47,7 @@ class _RandomWordsState extends State<RandomWords> {
       body: Column(
         children: [
           titleSection,
+          buttonSection
         ],
       ),
     );
@@ -77,6 +90,27 @@ class _RandomWordsState extends State<RandomWords> {
       ],
     ),
   );
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: color),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildSuggestions() {
     return ListView.builder(
