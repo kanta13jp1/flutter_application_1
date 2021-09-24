@@ -262,10 +262,10 @@ class MyApp extends StatelessWidget {
               height: 240,
               fit: BoxFit.cover,
             ),
-            MyStatefulWidget(),
             titleSection,
             buttonSection,
             textSection,
+            MyStatefulWidget(),
             TapboxA(),
             ParentWidget(),
           ],
@@ -310,13 +310,27 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool isChecked = false;
+  int _count = 0;
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           TextFormField(
             decoration: const InputDecoration(
@@ -329,6 +343,27 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               return null;
             },
           ),
+          CounterFormField(
+            autovalidate: false,
+            validator: (value) {
+              if (value < 0) return 'Negative values not supported';
+              return null;
+            },
+            onSaved: (value) => setState(() {
+              _count = value;
+            }),
+          ),
+          FlatButton(
+            child: Text('Submit'),
+            color: Colors.blue,
+            onPressed: () {
+              if (this._formKey.currentState.validate()) {
+                this._formKey.currentState.save();
+              }
+            },
+          ),
+          SizedBox(height: 20.0),
+          Text('Result = $_count'),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
@@ -339,13 +374,146 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   // Process data.
                 }
               },
-              child: const Text('Submit'),
+              child: const Text('1.Normal Button'),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                if (_formKey.currentState!.validate()) {
+                  // Process data.
+                }
+              },
+              child: const Text(
+                "2.BackGround Button",
+                style: TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 30,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.black, //ボタンの背景色
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                if (_formKey.currentState!.validate()) {
+                  // Process data.
+                }
+              },
+              child: Text(
+                "3.onPressed Color Button",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                onPrimary: Colors.black, //押したときの色！！
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: null, // onPressedをnullにする
+              child: Text(
+                "4.Untouchable button",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                onPrimary: Colors.black, //押したときの色！！
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: SizedBox(
+              // 5.SizedBoxで囲んでwidth/heightをつける
+              width: 330,
+              height: 100,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  "5.330 x 100 Size Button",
+                ),
+                style: ButtonStyle(),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                "6.Button",
+              ),
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(
+                  color: Colors.black, //枠線!
+                  width: 3, //枠線！
+                ),
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Checkbox(
+                checkColor: Colors.white,
+                fillColor: MaterialStateProperty.resolveWith(getColor),
+                value: isChecked,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isChecked = value!;
+                  });
+                },
+              )),
         ],
       ),
     );
   }
+}
+
+class CounterFormField extends FormField<int> {
+  CounterFormField(
+      {FormFieldSetter<int> onSaved,
+      FormFieldValidator<int> validator,
+      int initialValue = 0,
+      bool autovalidate = false})
+      : super(
+            onSaved: onSaved,
+            validator: validator,
+            initialValue: initialValue,
+            autovalidate: autovalidate,
+            builder: (FormFieldState<int> state) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.remove),
+                    onPressed: () {
+                      state.didChange(state.value - 1);
+                    },
+                  ),
+                  Text(state.value.toString()),
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      state.didChange(state.value + 1);
+                    },
+                  ),
+                ],
+              );
+            });
 }
 
 // #docregion FavoriteWidget
