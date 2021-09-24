@@ -264,13 +264,18 @@ class MyApp extends StatelessWidget {
             buttonSection,
             textSection,
             MyStatefulWidget(),
+            MyStatefulWidget2(),
             TapboxA(),
             ParentWidget(),
           ],
         ),
-        // body: const Center(
-        //   child: TapboxA(),
-        // ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          child: const Icon(Icons.navigation),
+          backgroundColor: Colors.green,
+        ),
       ),
     );
   }
@@ -309,7 +314,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isChecked = false;
-  int _count = 0;
+  String dropdownValue = 'One';
 
   @override
   Widget build(BuildContext context) {
@@ -335,32 +340,36 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               hintText: 'Enter your email',
             ),
             validator: (String? value) {
+              print("TextFormField.validator() value = {$value}");
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
               }
               return null;
             },
           ),
-          CounterFormField(
-            validator: (int? value) {
-              if (value! < 0) return 'Negative values not supported';
-              return null;
+          DropdownButton<String>(
+            value: dropdownValue,
+            icon: const Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? newValue) {
+              setState(() {
+                dropdownValue = newValue!;
+              });
             },
-            onSaved: (int? value) => setState(() {
-              _count = value!;
-            }),
+            items: <String>['One', 'Two', 'Free', 'Four']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
           ),
-          ElevatedButton(
-            child: Text('Submit'),
-            onPressed: () {
-              if (this._formKey.currentState!.validate()) {
-                this._formKey.currentState!.save();
-              }
-            },
-            style: ButtonStyle(),
-          ),
-          SizedBox(height: 20.0),
-          Text('Result = $_count'),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
@@ -474,6 +483,82 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   });
                 },
               )),
+        ],
+      ),
+    );
+  }
+}
+
+class MyStatefulWidget2 extends StatefulWidget {
+  const MyStatefulWidget2({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget2> createState() => _MyStatefulWidgetState2();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          CounterFormField(
+            validator: (int? value) {
+              print("CounterFormField.validator() value = {$value}");
+              if (value! < 0) return 'Negative values not supported';
+              return null;
+            },
+            onSaved: (int? value) => setState(() {
+              _count = value!;
+            }),
+          ),
+          ElevatedButton(
+            child: Text('Submit'),
+            onPressed: () {
+              if (this._formKey.currentState!.validate()) {
+                this._formKey.currentState!.save();
+              }
+            },
+            style: ButtonStyle(),
+          ),
+          SizedBox(height: 20.0),
+          Text('Result = $_count'),
+          const SizedBox(height: 30),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Stack(
+              children: <Widget>[
+                Positioned.fill(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: <Color>[
+                          Color(0xFF0D47A1),
+                          Color(0xFF1976D2),
+                          Color(0xFF42A5F5),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.all(16.0),
+                    primary: Colors.white,
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {},
+                  child: const Text('Gradient'),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
