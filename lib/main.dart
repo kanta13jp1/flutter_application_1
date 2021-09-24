@@ -172,9 +172,9 @@ class _TapboxCState extends State<TapboxC> {
           color: widget.active ? Colors.lightGreen[700] : Colors.grey[600],
           border: _highlight
               ? Border.all(
-            color: Colors.teal[700]!,
-            width: 10.0,
-          )
+                  color: Colors.teal[700]!,
+                  width: 10.0,
+                )
               : null,
         ),
       ),
@@ -220,9 +220,7 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    Color color = Theme
-        .of(context)
-        .primaryColor;
+    Color color = Theme.of(context).primaryColor;
 
     Widget buttonSection = SizedBox(
       child: Row(
@@ -239,11 +237,11 @@ class MyApp extends StatelessWidget {
       padding: const EdgeInsets.all(32),
       child: const Text(
         'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-            'Alps. Situated 1,578 meters above sea level, it is one of the '
-            'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-            'half-hour walk through pastures and pine forest, leads you to the '
-            'lake, which warms to 20 degrees Celsius in the summer. Activities '
-            'enjoyed here include rowing, and riding the summer toboggan run.',
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
         softWrap: true,
       ),
     );
@@ -344,23 +342,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             },
           ),
           CounterFormField(
-            autovalidate: false,
-            validator: (value) {
-              if (value < 0) return 'Negative values not supported';
+            validator: (int? value) {
+              if (value! < 0) return 'Negative values not supported';
               return null;
             },
-            onSaved: (value) => setState(() {
-              _count = value;
+            onSaved: (int? value) => setState(() {
+              _count = value!;
             }),
           ),
-          FlatButton(
+          ElevatedButton(
             child: Text('Submit'),
-            color: Colors.blue,
             onPressed: () {
-              if (this._formKey.currentState.validate()) {
-                this._formKey.currentState.save();
+              if (this._formKey.currentState!.validate()) {
+                this._formKey.currentState!.save();
               }
             },
+            style: ButtonStyle(),
           ),
           SizedBox(height: 20.0),
           Text('Result = $_count'),
@@ -485,15 +482,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
 class CounterFormField extends FormField<int> {
   CounterFormField(
-      {FormFieldSetter<int> onSaved,
-      FormFieldValidator<int> validator,
+      {required FormFieldSetter<int> onSaved,
+      required FormFieldValidator<int> validator,
       int initialValue = 0,
       bool autovalidate = false})
       : super(
             onSaved: onSaved,
             validator: validator,
             initialValue: initialValue,
-            autovalidate: autovalidate,
             builder: (FormFieldState<int> state) {
               return Row(
                 mainAxisSize: MainAxisSize.min,
@@ -501,14 +497,14 @@ class CounterFormField extends FormField<int> {
                   IconButton(
                     icon: Icon(Icons.remove),
                     onPressed: () {
-                      state.didChange(state.value - 1);
+                      state.didChange(state.value! - 1);
                     },
                   ),
                   Text(state.value.toString()),
                   IconButton(
                     icon: Icon(Icons.add),
                     onPressed: () {
-                      state.didChange(state.value + 1);
+                      state.didChange(state.value! + 1);
                     },
                   ),
                 ],
