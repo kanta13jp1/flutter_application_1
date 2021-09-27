@@ -496,10 +496,15 @@ class MyStatefulWidget2 extends StatefulWidget {
   State<MyStatefulWidget2> createState() => _MyStatefulWidgetState2();
 }
 
+double _volume = 0.0;
+
+enum SingingCharacter { lafayette, jefferson }
+
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int _count = 0;
+  SingingCharacter? _character = SingingCharacter.lafayette;
 
   @override
   Widget build(BuildContext context) {
@@ -558,6 +563,38 @@ class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
                 ),
               ],
             ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.volume_up),
+            tooltip: 'Increase volume by 10',
+            onPressed: () {
+              setState(() {
+                _volume += 10;
+              });
+            },
+          ),
+          Text('Volume : $_volume'),
+          ListTile(
+            title: const Text('Lafayette'),
+            leading: Radio<SingingCharacter>(
+            value: SingingCharacter.lafayette,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },),
+          ),
+          ListTile(
+            title: const Text('Thomas Jefferson'),
+            leading: Radio<SingingCharacter>(
+            value: SingingCharacter.jefferson,
+            groupValue: _character,
+            onChanged: (SingingCharacter? value) {
+              setState(() {
+                _character = value;
+              });
+            },),
           ),
         ],
       ),
