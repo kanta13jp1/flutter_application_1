@@ -505,6 +505,7 @@ class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int _count = 0;
   SingingCharacter? _character = SingingCharacter.lafayette;
+  double _currentSliderValue = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -577,24 +578,38 @@ class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
           ListTile(
             title: const Text('Lafayette'),
             leading: Radio<SingingCharacter>(
-            value: SingingCharacter.lafayette,
-            groupValue: _character,
-            onChanged: (SingingCharacter? value) {
-              setState(() {
-                _character = value;
-              });
-            },),
+              value: SingingCharacter.lafayette,
+              groupValue: _character,
+              onChanged: (SingingCharacter? value) {
+                setState(() {
+                  _character = value;
+                });
+              },
+            ),
           ),
           ListTile(
             title: const Text('Thomas Jefferson'),
             leading: Radio<SingingCharacter>(
-            value: SingingCharacter.jefferson,
-            groupValue: _character,
-            onChanged: (SingingCharacter? value) {
+              value: SingingCharacter.jefferson,
+              groupValue: _character,
+              onChanged: (SingingCharacter? value) {
+                setState(() {
+                  _character = value;
+                });
+              },
+            ),
+          ),
+          Slider(
+            value: _currentSliderValue,
+            min: 0,
+            max: 100,
+            divisions: 5,
+            label: _currentSliderValue.round().toString(),
+            onChanged: (double value) {
               setState(() {
-                _character = value;
+                _currentSliderValue = value;
               });
-            },),
+            },
           ),
         ],
       ),
