@@ -1,6 +1,182 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MaterialApp(
+      title: 'Navigation Basics',
+      home: FirstRoute(),
+    ));
+
+class FirstRoute extends StatelessWidget {
+  const FirstRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: [
+          Expanded(
+            /*1*/
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /*2*/
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: const Text(
+                    'Oeschinen Lake Campground',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Kandersteg, Switzerland',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const FavoriteWidget(),
+          const Center(
+            child: MyButton(),
+          ),
+        ],
+      ),
+    );
+
+    Color color = Theme.of(context).primaryColor;
+
+    Widget buttonSection = SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildButtonColumn(color, Icons.call, 'CALL'),
+          _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+          _buildButtonColumn(color, Icons.share, 'SHARE'),
+        ],
+      ),
+    );
+
+    Widget textSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: const Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
+        softWrap: true,
+      ),
+    );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('First Route'),
+      ),
+      body: ListView(
+        children: [
+          Image.asset(
+            'images/lake.jpg',
+            width: 600,
+            height: 240,
+            fit: BoxFit.cover,
+          ),
+          // ブラー
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: Container(
+                alignment: Alignment.center,
+                color: Colors.black.withOpacity(0)),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: const Text('Go to Next Page =>'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                );
+              },
+            ),
+          ),
+          Image.asset(
+            'images/lake.jpg',
+            width: 600,
+            height: 240,
+            fit: BoxFit.cover,
+          ),
+          titleSection,
+          buttonSection,
+          textSection,
+          MyStatefulWidget(),
+          MyStatefulWidget2(),
+          TapboxA(),
+          ParentWidget(),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: const Icon(Icons.navigation),
+        backgroundColor: Colors.green,
+      ),
+    );
+  }
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: color),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Second Route"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: const Icon(Icons.navigation),
+        backgroundColor: Colors.green,
+      ),
+    );
+  }
+}
 
 // TapboxA manages its own state.
 
@@ -216,6 +392,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
           const FavoriteWidget(),
+          const Center(
+            child: MyButton(),
+          ),
         ],
       ),
     );
@@ -254,6 +433,19 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
+            Image.asset(
+              'images/lake.jpg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
+            // ブラー
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                  alignment: Alignment.center,
+                  color: Colors.black.withOpacity(0)),
+            ),
             Image.asset(
               'images/lake.jpg',
               width: 600,
@@ -506,6 +698,20 @@ class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
   int _count = 0;
   SingingCharacter? _character = SingingCharacter.lafayette;
   double _currentSliderValue = 20;
+  bool isSwitched = false;
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -611,6 +817,42 @@ class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
               });
             },
           ),
+          Switch(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+                print(isSwitched);
+              });
+            },
+            activeTrackColor: Colors.yellow,
+            activeColor: Colors.orangeAccent,
+          ),
+          Center(
+            child: TextField(
+              controller: _controller,
+              onSubmitted: (String value) async {
+                await showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Thanks!'),
+                      content: Text(
+                          'You typed "$value", which has length ${value.characters.length}.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -647,6 +889,27 @@ class CounterFormField extends FormField<int> {
                 ],
               );
             });
+}
+
+class MyButton extends StatelessWidget {
+  const MyButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // The InkWell wraps the custom flat button widget.
+    return InkWell(
+      // When the user taps the button, show a snackbar.
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Tap'),
+        ));
+      },
+      child: const Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Text('Flat Button'),
+      ),
+    );
+  }
 }
 
 // #docregion FavoriteWidget
