@@ -11,6 +11,8 @@ class FirstRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController _scrollController = new ScrollController();
+    var offset;
     Widget titleSection = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
@@ -78,6 +80,7 @@ class FirstRoute extends StatelessWidget {
         title: const Text('First Route'),
       ),
       body: ListView(
+        controller: _scrollController,
         children: [
           Image.asset(
             'images/lake.jpg',
@@ -98,7 +101,7 @@ class FirstRoute extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                  MaterialPageRoute(builder: (context) => const Page1()),
                 );
               },
             ),
@@ -120,7 +123,19 @@ class FirstRoute extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          print("floatingActionButton::onPressed()");
           // Add your onPressed code here!
+          if (offset != 0.0) {
+            offset = 0.0;
+          } else {
+            offset = _scrollController.position.maxScrollExtent;
+          }
+          _scrollController.animateTo(
+            offset,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 2400),
+          );
+          print("{$_scrollController}");
         },
         child: const Icon(Icons.navigation),
         backgroundColor: Colors.green,
@@ -155,24 +170,129 @@ class SecondRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController _scrollController = new ScrollController();
+    var offset;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Second Route"),
       ),
-      body: Center(
+      body: ListView(controller: _scrollController, children: [
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Go back!'),
+          ),
+        ),
+      ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("floatingActionButton::onPressed()");
+          // Add your onPressed code here!
+          if (offset != 0.0) {
+            offset = 0.0;
+          } else {
+            offset = _scrollController.position.maxScrollExtent;
+          }
+          _scrollController.animateTo(
+            offset,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
+          print("{$_scrollController}");
+        },
+        child: const Icon(Icons.navigation),
+        backgroundColor: Colors.pinkAccent,
+      ),
+    );
+  }
+}
+
+class Page1 extends StatelessWidget {
+  const Page1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    ScrollController _scrollController = new ScrollController();
+    var offset;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Page 1"),
+      ),
+      body: ListView(controller: _scrollController, children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('<== Go back!'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(_createRoute());
+            },
+            child: const Text('Go to Next Page =>'),
+          ),
+        ),
+      ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("floatingActionButton::onPressed()");
+          // Add your onPressed code here!
+          if (offset != 0.0) {
+            offset = 0.0;
+          } else {
+            offset = _scrollController.position.maxScrollExtent;
+          }
+          _scrollController.animateTo(
+            offset,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
+          print("{$_scrollController}");
+        },
+        child: const Icon(Icons.navigation),
+        backgroundColor: Colors.pinkAccent,
+      ),
+    );
+  }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Page2(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      final tween = Tween(begin: begin, end: end);
+      final offsetAnimation = animation.drive(tween);
+      return child;
+    },
+  );
+}
+
+class Page2 extends StatelessWidget {
+  const Page2({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Page 2"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: ElevatedButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Go back!'),
+          child: const Text('<== Go back!'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        child: const Icon(Icons.navigation),
-        backgroundColor: Colors.green,
       ),
     );
   }
