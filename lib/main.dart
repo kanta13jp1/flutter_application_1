@@ -269,10 +269,15 @@ Route _createRoute() {
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
+      const curve = Curves.ease;
+
       final tween = Tween(begin: begin, end: end);
-      final offsetAnimation = animation.drive(tween);
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: curve,
+      );
       return SlideTransition(
-        position: offsetAnimation,
+        position: tween.animate(curvedAnimation),
         child: child,
       );
     },
