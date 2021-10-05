@@ -289,18 +289,76 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController _scrollController = new ScrollController();
+    var offset;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Page 2"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('<== Go back!'),
+      body: ListView(controller: _scrollController, children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('<== Go back!'),
+          ),
         ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+      ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("floatingActionButton::onPressed()");
+          // Add your onPressed code here!
+          if (offset != 0.0) {
+            offset = 0.0;
+          } else {
+            offset = _scrollController.position.maxScrollExtent;
+          }
+          _scrollController.animateTo(
+            offset,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
+          print("{$_scrollController}");
+        },
+        child: const Icon(Icons.navigation),
+        backgroundColor: Colors.pinkAccent,
+      ),
+    );
+  }
+}
+
+class DraggableCard extends StatefulWidget {
+  const DraggableCard({required this.child, Key? key}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  _DraggableCardState createState() => _DraggableCardState();
+}
+
+class _DraggableCardState extends State<DraggableCard> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: Card(
+        child: widget.child,
       ),
     );
   }
