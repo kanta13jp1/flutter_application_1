@@ -310,6 +310,61 @@ class Page2 extends StatelessWidget {
             size: 128,
           ),
         ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
+        const DraggableCard(
+          child: FlutterLogo(
+            size: 128,
+          ),
+        ),
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -343,24 +398,65 @@ class DraggableCard extends StatefulWidget {
   _DraggableCardState createState() => _DraggableCardState();
 }
 
-class _DraggableCardState extends State<DraggableCard> {
+class _DraggableCardState extends State<DraggableCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Alignment> _animation;
+  Alignment _dragAlignment = Alignment.center;
+  
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _controller.addListener(() {
+      setState(() {
+        _dragAlignment = _animation.value;
+      });
+    });
   }
 
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Card(
-        child: widget.child,
+    var size = MediaQuery.of(context).size;
+    return GestureDetector(
+      onPanDown: (details) {
+        _controller.stop();
+      },
+      onPanUpdate: (details) {
+        setState(() {
+          _dragAlignment += Alignment(
+            details.delta.dx / (size.width / 2),
+            details.delta.dy / (size.height / 2),
+          );
+        });
+      },
+      onPanEnd: (details) {
+        _runAnimation();
+      },
+      child: Align(
+        alignment: _dragAlignment,
+        child: Card(
+          child: widget.child,
+        ),
       ),
     );
+  }
+
+  void _runAnimation() {
+    _animation = _controller.drive(
+      AlignmentTween(
+        begin: _dragAlignment,
+        end: Alignment.center,
+      ),
+    );
+    _controller.reset();
+    _controller.forward();
   }
 }
 
