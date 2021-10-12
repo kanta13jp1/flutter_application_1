@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 import 'dart:ui';
+import 'dart:math';
 
 void main() => runApp(const MaterialApp(
       title: 'Navigation Basics',
@@ -239,6 +241,14 @@ class Page1 extends StatelessWidget {
             child: const Text('Go to Next Page =>'),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Container(
+            width: 200.0,
+            height: 200.0,
+            color: Colors.green,
+          ),
+        ),
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -284,6 +294,62 @@ Route _createRoute() {
   );
 }
 
+// The StatefulWidget's job is to take data and create a State class.
+// In this case, the widget takes a title, and creates a _MyHomePageState.
+class MyHomePage extends StatefulWidget {
+  final String title;
+
+  const MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+// The State class is responsible for two things: holding some data you can
+// update and building the UI using that data.
+class _MyHomePageState extends State<MyHomePage> {
+  // Whether the green box should be visible.
+  bool _visible = true;
+
+  @override
+  Widget build(BuildContext context) {
+    // The green box goes here with some other Widgets.
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: AnimatedOpacity(
+          // If the widget is visible, animate to 0.0 (invisible).
+          // If the widget is hidden, animate to 1.0 (fully visible).
+          opacity: _visible ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          // The green box must be a child of the AnimatedOpacity widget.
+          child: Container(
+            width: 200.0,
+            height: 200.0,
+            color: Colors.green,
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Call setState. This tells Flutter to rebuild the
+          // UI with the changes.
+          setState(() {
+            _visible = !_visible;
+          });
+        },
+        tooltip: 'Toggle Opacity',
+        child: const Icon(Icons.flip),
+      ),
+    );
+  }
+}
+
 class Page2 extends StatelessWidget {
   const Page2({Key? key}) : super(key: key);
 
@@ -303,6 +369,15 @@ class Page2 extends StatelessWidget {
               Navigator.pop(context);
             },
             child: const Text('<== Go back!'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(_createRoute2());
+            },
+            child: const Text('Go to Next Page =>'),
           ),
         ),
         const DraggableCard(
@@ -387,6 +462,48 @@ class Page2 extends StatelessWidget {
       ),
     );
   }
+}
+
+Route _createRoute2() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const AnimatedContainerApp(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      final tween = Tween(begin: begin, end: end);
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: curve,
+      );
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    },
+  );
+}
+
+Route _createRoute3() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const MyHomePage(title: 'Opacity Demo'),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      final tween = Tween(begin: begin, end: end);
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: curve,
+      );
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    },
+  );
 }
 
 class DraggableCard extends StatefulWidget {
@@ -437,7 +554,7 @@ class _DraggableCardState extends State<DraggableCard>
         });
       },
       onPanEnd: (details) {
-        _runAnimation();
+        _runAnimation(details.velocity.pixelsPerSecond, size);
       },
       child: Align(
         alignment: _dragAlignment,
@@ -448,15 +565,122 @@ class _DraggableCardState extends State<DraggableCard>
     );
   }
 
-  void _runAnimation() {
+  /// Calculates and runs a [SpringSimulation].
+  void _runAnimation(Offset pixelsPerSecond, Size size) {
     _animation = _controller.drive(
       AlignmentTween(
         begin: _dragAlignment,
         end: Alignment.center,
       ),
     );
-    _controller.reset();
-    _controller.forward();
+
+    // Calculate the velocity relative to the unit interval, [0,1],
+    // used by the animation controller.
+    final unitsPerSecondX = pixelsPerSecond.dx / size.width;
+    final unitsPerSecondY = pixelsPerSecond.dy / size.height;
+    final unitsPerSecond = Offset(unitsPerSecondX, unitsPerSecondY);
+    final unitVelocity = unitsPerSecond.distance;
+
+    const spring = SpringDescription(
+      mass: 30,
+      stiffness: 1,
+      damping: 1,
+    );
+
+    final simulation = SpringSimulation(spring, 0, 1, -unitVelocity);
+
+    _controller.animateWith(simulation);
+  }
+}
+
+class AnimatedContainerApp extends StatefulWidget {
+  const AnimatedContainerApp({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedContainerAppState createState() => _AnimatedContainerAppState();
+}
+
+class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
+  // Define the various properties with default values. Update these properties
+  // when the user taps a FloatingActionButton.
+  double _width = 50;
+  double _height = 50;
+  Color _color = Colors.green;
+  BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('AnimatedContainer Demo'),
+        ),
+        body: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('<== Go back!'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(_createRoute3());
+                },
+                child: const Text('Go to Next Page =>'),
+              ),
+            ),
+            Center(
+              child: AnimatedContainer(
+                // Use the properties stored in the State class.
+                width: _width,
+                height: _height,
+                decoration: BoxDecoration(
+                  color: _color,
+                  borderRadius: _borderRadius,
+                ),
+                // Define how long the animation should take.
+                duration: const Duration(seconds: 1),
+                // Provide an optional curve to make the animation feel smoother.
+                curve: Curves.fastOutSlowIn,
+              ),
+            ),
+          ]
+        ),
+        floatingActionButton: FloatingActionButton(
+          // When the user taps the button
+          onPressed: () {
+            // Use setState to rebuild the widget with new values.
+            setState(() {
+              // Create a random number generator.
+              final random = Random();
+
+              // Generate a random width and height.
+              _width = random.nextInt(300).toDouble();
+              _height = random.nextInt(300).toDouble();
+
+              // Generate a random color.
+              _color = Color.fromRGBO(
+                random.nextInt(256),
+                random.nextInt(256),
+                random.nextInt(256),
+                1,
+              );
+
+              // Generate a random border radius.
+              _borderRadius =
+                  BorderRadius.circular(random.nextInt(100).toDouble());
+            });
+          },
+          child: const Icon(Icons.play_arrow),
+        ),
+      ),
+    );
   }
 }
 
