@@ -321,20 +321,77 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: AnimatedOpacity(
-          // If the widget is visible, animate to 0.0 (invisible).
-          // If the widget is hidden, animate to 1.0 (fully visible).
-          opacity: _visible ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 500),
-          // The green box must be a child of the AnimatedOpacity widget.
-          child: Container(
-            width: 200.0,
-            height: 200.0,
-            color: Colors.green,
-          ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);              
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);              
+              },
+            ),
+          ],
         ),
       ),
+      body: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('<== Go back!'),
+              ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.of(context).push(_createRoute3());
+            //     },
+            //     child: const Text('Go to Next Page =>'),
+            //   ),
+            // ),
+            Center(
+              child: AnimatedOpacity(
+                // If the widget is visible, animate to 0.0 (invisible).
+                // If the widget is hidden, animate to 1.0 (fully visible).
+                opacity: _visible ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                // The green box must be a child of the AnimatedOpacity widget.
+                child: Container(
+                  width: 200.0,
+                  height: 200.0,
+                  color: Colors.green,
+                ),
+              ),
+            ),
+          ]
+        ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Call setState. This tells Flutter to rebuild the
