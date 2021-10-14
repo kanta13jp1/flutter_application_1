@@ -220,7 +220,7 @@ class Page1 extends StatelessWidget {
     var offset;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page 1"),
+        title: const Text("SnackBar Demo"),
       ),
       body: ListView(controller: _scrollController, children: [
         Padding(
@@ -247,6 +247,24 @@ class Page1 extends StatelessWidget {
             width: 200.0,
             height: 200.0,
             color: Colors.green,
+            child: ElevatedButton(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  content: const Text('Yay! A SnackBar!'),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                );
+
+                // Find the ScaffoldMessenger in the widget tree
+                // and use it to show a SnackBar.
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              child: const Text('Show SnackBar'),
+            ),
           ),
         ),
       ]),
