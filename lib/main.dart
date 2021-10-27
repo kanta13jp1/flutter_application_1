@@ -3,8 +3,24 @@ import 'package:flutter/physics.dart';
 import 'dart:ui';
 import 'dart:math';
 
-void main() => runApp(const MaterialApp(
+void main() => runApp(MaterialApp(
       title: 'Navigation Basics',
+      theme: ThemeData(
+        // Define the default brightness and colors.
+        brightness: Brightness.dark,
+        primaryColor: Colors.lightBlue[800],
+
+        // Define the default font family.
+        fontFamily: 'Georgia',
+
+        // Define the default `TextTheme`. Use this to specify the default
+        // text styling for headlines, titles, bodies of text, and more.
+        textTheme: const TextTheme(
+          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+        ),
+      ),
       home: FirstRoute(),
     ));
 
@@ -267,6 +283,86 @@ class Page1 extends StatelessWidget {
             ),
           ),
         ),
+        Container(
+          width: 200.0,
+          height: 200.0,
+          color: Colors.green,
+          child: Center(
+            child: ListView(children: [
+              Text(
+                'no FontFamily',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              Text(
+                'italic no FontFamily',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              Text(
+                'Exo2 font from the awesome_package',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Exo2',
+                  package: 'awesome_package',
+                ),
+              ),
+              Text(
+                'italic Exo2 font from the awesome_package',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Exo2',
+                  fontStyle: FontStyle.italic,
+                  package: 'awesome_package',
+                ),
+              ),
+              Text(
+                'RobotoMono font',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'RobotoMono',
+                ),
+              ),
+              Text(
+                'italic RobotoMono font',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: 'RobotoMono',
+                ),
+              ),
+            ]),
+          ),
+        ),
+        const Center(
+          child: Text(
+            'No FontFamily',
+            style: TextStyle(
+              fontSize: 100,
+            ),
+          ),
+        ),
+        const Center(
+          // This Text widget uses the Exo2 font.
+          child: Text(
+            'Exo2',
+            style: TextStyle(
+              fontSize: 100,
+              fontFamily: 'Exo2',
+              package: 'awesome_package',
+            ),
+          ),
+        ),
+        const Center(
+          // This Text widget uses the RobotoMono font.
+          child: Text(
+            'RobotoMono',
+            style: TextStyle(fontSize: 100, fontFamily: 'RobotoMono'),
+          ),
+        ),
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -359,7 +455,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);              
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -368,48 +464,46 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);              
+                Navigator.pop(context);
               },
             ),
           ],
         ),
       ),
-      body: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('<== Go back!'),
-              ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 16.0),
-            //   child: ElevatedButton(
-            //     onPressed: () {
-            //       Navigator.of(context).push(_createRoute3());
-            //     },
-            //     child: const Text('Go to Next Page =>'),
-            //   ),
-            // ),
-            Center(
-              child: AnimatedOpacity(
-                // If the widget is visible, animate to 0.0 (invisible).
-                // If the widget is hidden, animate to 1.0 (fully visible).
-                opacity: _visible ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 500),
-                // The green box must be a child of the AnimatedOpacity widget.
-                child: Container(
-                  width: 200.0,
-                  height: 200.0,
-                  color: Colors.green,
-                ),
-              ),
-            ),
-          ]
+      body: ListView(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('<== Go back!'),
+          ),
         ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+        //   child: ElevatedButton(
+        //     onPressed: () {
+        //       Navigator.of(context).push(_createRoute3());
+        //     },
+        //     child: const Text('Go to Next Page =>'),
+        //   ),
+        // ),
+        Center(
+          child: AnimatedOpacity(
+            // If the widget is visible, animate to 0.0 (invisible).
+            // If the widget is hidden, animate to 1.0 (fully visible).
+            opacity: _visible ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 500),
+            // The green box must be a child of the AnimatedOpacity widget.
+            child: Container(
+              width: 200.0,
+              height: 200.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+      ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Call setState. This tells Flutter to rebuild the
@@ -541,7 +635,8 @@ class Page2 extends StatelessWidget {
 
 Route _createRoute2() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const AnimatedContainerApp(),
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const AnimatedContainerApp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
@@ -562,7 +657,8 @@ Route _createRoute2() {
 
 Route _createRoute3() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const MyHomePage(title: 'Opacity Demo'),
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const MyHomePage(title: 'Opacity Demo'),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
@@ -595,11 +691,12 @@ class _DraggableCardState extends State<DraggableCard>
   late AnimationController _controller;
   late Animation<Alignment> _animation;
   Alignment _dragAlignment = Alignment.center;
-  
+
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _controller.addListener(() {
       setState(() {
         _dragAlignment = _animation.value;
@@ -690,43 +787,41 @@ class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
         appBar: AppBar(
           title: const Text('AnimatedContainer Demo'),
         ),
-        body: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('<== Go back!'),
-              ),
+        body: ListView(children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('<== Go back!'),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(_createRoute3());
-                },
-                child: const Text('Go to Next Page =>'),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(_createRoute3());
+              },
+              child: const Text('Go to Next Page =>'),
             ),
-            Center(
-              child: AnimatedContainer(
-                // Use the properties stored in the State class.
-                width: _width,
-                height: _height,
-                decoration: BoxDecoration(
-                  color: _color,
-                  borderRadius: _borderRadius,
-                ),
-                // Define how long the animation should take.
-                duration: const Duration(seconds: 1),
-                // Provide an optional curve to make the animation feel smoother.
-                curve: Curves.fastOutSlowIn,
+          ),
+          Center(
+            child: AnimatedContainer(
+              // Use the properties stored in the State class.
+              width: _width,
+              height: _height,
+              decoration: BoxDecoration(
+                color: _color,
+                borderRadius: _borderRadius,
               ),
+              // Define how long the animation should take.
+              duration: const Duration(seconds: 1),
+              // Provide an optional curve to make the animation feel smoother.
+              curve: Curves.fastOutSlowIn,
             ),
-          ]
-        ),
+          ),
+        ]),
         floatingActionButton: FloatingActionButton(
           // When the user taps the button
           onPressed: () {
