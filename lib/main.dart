@@ -200,7 +200,7 @@ class SecondRoute extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text('Go back!'),
+            child: const Text('<== Go back!'),
           ),
         ),
       ]),
@@ -480,15 +480,15 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('<== Go back!'),
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 16.0),
-        //   child: ElevatedButton(
-        //     onPressed: () {
-        //       Navigator.of(context).push(_createRoute3());
-        //     },
-        //     child: const Text('Go to Next Page =>'),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(_createRoute4());
+            },
+            child: const Text('Go to Next Page =>'),
+          ),
+        ),
         Center(
           child: AnimatedOpacity(
             // If the widget is visible, animate to 0.0 (invisible).
@@ -514,6 +514,106 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         tooltip: 'Toggle Opacity',
         child: const Icon(Icons.flip),
+      ),
+    );
+  }
+}
+
+class MyHomePage2 extends StatefulWidget {
+  final String title;
+
+  const MyHomePage2({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  _MyHomePageState2 createState() => _MyHomePageState2();
+}
+
+// The State class is responsible for two things: holding some data you can
+// update and building the UI using that data.
+class _MyHomePageState2 extends State<MyHomePage2> {
+  // Whether the green box should be visible.
+  bool _visible = true;
+
+  @override
+  Widget build(BuildContext context) {
+    // The green box goes here with some other Widgets.
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: ListView(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('<== Go back!'),
+          ),
+        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+        //   child: ElevatedButton(
+        //     onPressed: () {
+        //       Navigator.of(context).push(_createRoute4());
+        //     },
+        //     child: const Text('Go to Next Page =>'),
+        //   ),
+        // ),
+        Center(
+          child: Container(
+            color: Theme.of(context).colorScheme.secondary,
+            child: Text(
+              'Text with a background color',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+        ),
+      ]),
+      floatingActionButton: Theme(
+        data: Theme.of(context).copyWith(splashColor: Colors.yellow),
+        child: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
@@ -659,6 +759,28 @@ Route _createRoute3() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
         const MyHomePage(title: 'Opacity Demo'),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      final tween = Tween(begin: begin, end: end);
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: curve,
+      );
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    },
+  );
+}
+
+Route _createRoute4() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const MyHomePage2(title: 'Custom Themes'),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
