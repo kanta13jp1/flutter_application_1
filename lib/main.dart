@@ -113,15 +113,32 @@ class FirstRoute extends StatelessWidget {
                 alignment: Alignment.center,
                 color: Colors.black.withOpacity(0)),
           ),
-          Center(
-            child: ElevatedButton(
-              child: const Text('Go to Next Page =>'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Page1()),
-                );
-              },
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Center(
+              child: ElevatedButton(
+                child: const Text('Go to Next Page =>'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Page1()),
+                  );
+                },
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Center(
+              child: ElevatedButton(
+                child: const Text('Go to Tabs Demo Page =>'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TabBarDemo()),
+                  );
+                },
+              ),
             ),
           ),
           Image.asset(
@@ -589,15 +606,15 @@ class _MyHomePageState2 extends State<MyHomePage2> {
             child: const Text('<== Go back!'),
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 16.0),
-        //   child: ElevatedButton(
-        //     onPressed: () {
-        //       Navigator.of(context).push(_createRoute4());
-        //     },
-        //     child: const Text('Go to Next Page =>'),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(_createRoute5());
+            },
+            child: const Text('Go to Next Page =>'),
+          ),
+        ),
         Center(
           child: Container(
             color: Theme.of(context).colorScheme.secondary,
@@ -781,6 +798,27 @@ Route _createRoute4() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
         const MyHomePage2(title: 'Custom Themes'),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      final tween = Tween(begin: begin, end: end);
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: curve,
+      );
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    },
+  );
+}
+
+Route _createRoute5() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const TabBarDemo(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
@@ -1786,4 +1824,90 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
     );
   }
 // #docregion _FavoriteWidgetState-fields
+}
+
+class TabBarDemo extends StatelessWidget {
+  const TabBarDemo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.directions_car)),
+                Tab(icon: Icon(Icons.directions_transit)),
+                Tab(icon: Icon(Icons.directions_bike)),
+              ],
+            ),
+            title: const Text('Tabs Demo'),
+          ),
+          body: TabBarView(
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.directions_car,
+                        size: 200
+                      ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('<== Go back!'),
+                        ),
+                      ),
+                    ]
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.directions_transit,
+                        size: 200
+                      ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('<== Go back!'),
+                        ),
+                      ),
+                    ]
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.directions_bike,
+                        size: 200
+                      ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('<== Go back!'),
+                        ),
+                      ),
+                    ]
+                  ),
+                )
+              ],
+            ),
+        ),
+      ),
+    );
+  }
 }
