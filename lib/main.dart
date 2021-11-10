@@ -1970,7 +1970,6 @@ class _ExampleCupertinoDownloadButtonState
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
-            Navigator.pop(context);
           },
         ),
       ),
