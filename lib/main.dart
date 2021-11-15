@@ -2016,6 +2016,12 @@ class _ExampleCupertinoDownloadButtonState
           builder: (context, child) {
             return ListView(
               children:[
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('<== Go back!'),
+                ),
                 DownloadButton(
                   status: downloadController.downloadStatus,
                   downloadProgress: downloadController.progress,
