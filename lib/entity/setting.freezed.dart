@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'setting.dart';
 
@@ -27,7 +28,7 @@ class _$ReminderTimeTearOff {
     );
   }
 
-  ReminderTime fromJson(Map<String, Object> json) {
+  ReminderTime fromJson(Map<String, Object?> json) {
     return ReminderTime.fromJson(json);
   }
 }
@@ -125,7 +126,7 @@ class _$_ReminderTime extends _ReminderTime with DiagnosticableTreeMixin {
   const _$_ReminderTime({required this.hour, required this.minute}) : super._();
 
   factory _$_ReminderTime.fromJson(Map<String, dynamic> json) =>
-      _$_$_ReminderTimeFromJson(json);
+      _$$_ReminderTimeFromJson(json);
 
   @override
   final int hour;
@@ -149,18 +150,14 @@ class _$_ReminderTime extends _ReminderTime with DiagnosticableTreeMixin {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ReminderTime &&
-            (identical(other.hour, hour) ||
-                const DeepCollectionEquality().equals(other.hour, hour)) &&
-            (identical(other.minute, minute) ||
-                const DeepCollectionEquality().equals(other.minute, minute)));
+        (other.runtimeType == runtimeType &&
+            other is _ReminderTime &&
+            (identical(other.hour, hour) || other.hour == hour) &&
+            (identical(other.minute, minute) || other.minute == minute));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(hour) ^
-      const DeepCollectionEquality().hash(minute);
+  int get hashCode => Object.hash(runtimeType, hour, minute);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +166,7 @@ class _$_ReminderTime extends _ReminderTime with DiagnosticableTreeMixin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ReminderTimeToJson(this);
+    return _$$_ReminderTimeToJson(this);
   }
 }
 
@@ -182,9 +179,9 @@ abstract class _ReminderTime extends ReminderTime {
       _$_ReminderTime.fromJson;
 
   @override
-  int get hour => throw _privateConstructorUsedError;
+  int get hour;
   @override
-  int get minute => throw _privateConstructorUsedError;
+  int get minute;
   @override
   @JsonKey(ignore: true)
   _$ReminderTimeCopyWith<_ReminderTime> get copyWith =>
@@ -221,7 +218,7 @@ class _$SettingTearOff {
     );
   }
 
-  Setting fromJson(Map<String, Object> json) {
+  Setting fromJson(Map<String, Object?> json) {
     return Setting.fromJson(json);
   }
 }
@@ -407,7 +404,7 @@ class _$_Setting extends _Setting with DiagnosticableTreeMixin {
       : super._();
 
   factory _$_Setting.fromJson(Map<String, dynamic> json) =>
-      _$_$_SettingFromJson(json);
+      _$$_SettingFromJson(json);
 
   @JsonKey(defaultValue: const [])
   @override
@@ -459,51 +456,44 @@ class _$_Setting extends _Setting with DiagnosticableTreeMixin {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Setting &&
-            (identical(other.pillSheetTypes, pillSheetTypes) ||
-                const DeepCollectionEquality()
-                    .equals(other.pillSheetTypes, pillSheetTypes)) &&
+        (other.runtimeType == runtimeType &&
+            other is _Setting &&
+            const DeepCollectionEquality()
+                .equals(other.pillSheetTypes, pillSheetTypes) &&
             (identical(other.pillNumberForFromMenstruation,
                     pillNumberForFromMenstruation) ||
-                const DeepCollectionEquality().equals(
-                    other.pillNumberForFromMenstruation,
-                    pillNumberForFromMenstruation)) &&
+                other.pillNumberForFromMenstruation ==
+                    pillNumberForFromMenstruation) &&
             (identical(other.durationMenstruation, durationMenstruation) ||
-                const DeepCollectionEquality().equals(
-                    other.durationMenstruation, durationMenstruation)) &&
-            (identical(other.reminderTimes, reminderTimes) ||
-                const DeepCollectionEquality()
-                    .equals(other.reminderTimes, reminderTimes)) &&
+                other.durationMenstruation == durationMenstruation) &&
+            const DeepCollectionEquality()
+                .equals(other.reminderTimes, reminderTimes) &&
             (identical(other.isOnReminder, isOnReminder) ||
-                const DeepCollectionEquality()
-                    .equals(other.isOnReminder, isOnReminder)) &&
+                other.isOnReminder == isOnReminder) &&
             (identical(other.isOnNotifyInNotTakenDuration,
                     isOnNotifyInNotTakenDuration) ||
-                const DeepCollectionEquality().equals(
-                    other.isOnNotifyInNotTakenDuration,
-                    isOnNotifyInNotTakenDuration)) &&
+                other.isOnNotifyInNotTakenDuration ==
+                    isOnNotifyInNotTakenDuration) &&
             (identical(
                     other.pillSheetAppearanceMode, pillSheetAppearanceMode) ||
-                const DeepCollectionEquality().equals(
-                    other.pillSheetAppearanceMode, pillSheetAppearanceMode)) &&
+                other.pillSheetAppearanceMode == pillSheetAppearanceMode) &&
             (identical(other.isAutomaticallyCreatePillSheet,
                     isAutomaticallyCreatePillSheet) ||
-                const DeepCollectionEquality().equals(
-                    other.isAutomaticallyCreatePillSheet,
-                    isAutomaticallyCreatePillSheet)));
+                other.isAutomaticallyCreatePillSheet ==
+                    isAutomaticallyCreatePillSheet));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(pillSheetTypes) ^
-      const DeepCollectionEquality().hash(pillNumberForFromMenstruation) ^
-      const DeepCollectionEquality().hash(durationMenstruation) ^
-      const DeepCollectionEquality().hash(reminderTimes) ^
-      const DeepCollectionEquality().hash(isOnReminder) ^
-      const DeepCollectionEquality().hash(isOnNotifyInNotTakenDuration) ^
-      const DeepCollectionEquality().hash(pillSheetAppearanceMode) ^
-      const DeepCollectionEquality().hash(isAutomaticallyCreatePillSheet);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(pillSheetTypes),
+      pillNumberForFromMenstruation,
+      durationMenstruation,
+      const DeepCollectionEquality().hash(reminderTimes),
+      isOnReminder,
+      isOnNotifyInNotTakenDuration,
+      pillSheetAppearanceMode,
+      isAutomaticallyCreatePillSheet);
 
   @JsonKey(ignore: true)
   @override
@@ -512,7 +502,7 @@ class _$_Setting extends _Setting with DiagnosticableTreeMixin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SettingToJson(this);
+    return _$$_SettingToJson(this);
   }
 }
 
@@ -531,23 +521,22 @@ abstract class _Setting extends Setting {
   factory _Setting.fromJson(Map<String, dynamic> json) = _$_Setting.fromJson;
 
   @override
-  List<PillSheetType> get pillSheetTypes => throw _privateConstructorUsedError;
+  List<PillSheetType> get pillSheetTypes;
   @override
-  int get pillNumberForFromMenstruation => throw _privateConstructorUsedError;
+  int get pillNumberForFromMenstruation;
   @override
-  int get durationMenstruation => throw _privateConstructorUsedError;
+  int get durationMenstruation;
   @override
-  List<ReminderTime> get reminderTimes => throw _privateConstructorUsedError;
+  List<ReminderTime> get reminderTimes;
   @override
   @JsonSerializable(explicitToJson: true)
-  bool get isOnReminder => throw _privateConstructorUsedError;
+  bool get isOnReminder;
   @override
-  bool get isOnNotifyInNotTakenDuration => throw _privateConstructorUsedError;
+  bool get isOnNotifyInNotTakenDuration;
   @override
-  PillSheetAppearanceMode get pillSheetAppearanceMode =>
-      throw _privateConstructorUsedError;
+  PillSheetAppearanceMode get pillSheetAppearanceMode;
   @override
-  bool get isAutomaticallyCreatePillSheet => throw _privateConstructorUsedError;
+  bool get isAutomaticallyCreatePillSheet;
   @override
   @JsonKey(ignore: true)
   _$SettingCopyWith<_Setting> get copyWith =>
