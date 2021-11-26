@@ -28,7 +28,7 @@ abstract class PillSheetModifiedHistoryValue
 
   factory PillSheetModifiedHistoryValue.fromJson(Map<String, dynamic> json) =>
       _$PillSheetModifiedHistoryValueFromJson(json);
-  Map<String, dynamic> toJson() => _$_$_PillSheetModifiedHistoryValueToJson(
+  Map<String, dynamic> toJson() => _$$_PillSheetModifiedHistoryValueToJson(
       this as _$_PillSheetModifiedHistoryValue);
 }
 
@@ -49,7 +49,7 @@ abstract class CreatedPillSheetValue implements _$CreatedPillSheetValue {
   factory CreatedPillSheetValue.fromJson(Map<String, dynamic> json) =>
       _$CreatedPillSheetValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_CreatedPillSheetValueToJson(this as _$_CreatedPillSheetValue);
+      _$$_CreatedPillSheetValueToJson(this as _$_CreatedPillSheetValue);
 }
 
 @freezed
@@ -76,7 +76,7 @@ abstract class AutomaticallyRecordedLastTakenDateValue
           Map<String, dynamic> json) =>
       _$AutomaticallyRecordedLastTakenDateValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_AutomaticallyRecordedLastTakenDateValueToJson(
+      _$$_AutomaticallyRecordedLastTakenDateValueToJson(
           this as _$_AutomaticallyRecordedLastTakenDateValue);
 }
 
@@ -97,7 +97,7 @@ abstract class DeletedPillSheetValue implements _$DeletedPillSheetValue {
   factory DeletedPillSheetValue.fromJson(Map<String, dynamic> json) =>
       _$DeletedPillSheetValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_DeletedPillSheetValueToJson(this as _$_DeletedPillSheetValue);
+      _$$_DeletedPillSheetValueToJson(this as _$_DeletedPillSheetValue);
 }
 
 @freezed
@@ -122,7 +122,7 @@ abstract class TakenPillValue implements _$TakenPillValue {
   factory TakenPillValue.fromJson(Map<String, dynamic> json) =>
       _$TakenPillValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_TakenPillValueToJson(this as _$_TakenPillValue);
+      _$$_TakenPillValueToJson(this as _$_TakenPillValue);
 }
 
 @freezed
@@ -147,7 +147,7 @@ abstract class RevertTakenPillValue implements _$RevertTakenPillValue {
   factory RevertTakenPillValue.fromJson(Map<String, dynamic> json) =>
       _$RevertTakenPillValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_RevertTakenPillValueToJson(this as _$_RevertTakenPillValue);
+      _$$_RevertTakenPillValueToJson(this as _$_RevertTakenPillValue);
 }
 
 @freezed
@@ -176,7 +176,7 @@ abstract class ChangedPillNumberValue implements _$ChangedPillNumberValue {
   factory ChangedPillNumberValue.fromJson(Map<String, dynamic> json) =>
       _$ChangedPillNumberValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_ChangedPillNumberValueToJson(this as _$_ChangedPillNumberValue);
+      _$$_ChangedPillNumberValueToJson(this as _$_ChangedPillNumberValue);
 }
 
 @freezed
@@ -199,7 +199,7 @@ abstract class EndedPillSheetValue implements _$EndedPillSheetValue {
   factory EndedPillSheetValue.fromJson(Map<String, dynamic> json) =>
       _$EndedPillSheetValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_EndedPillSheetValueToJson(this as _$_EndedPillSheetValue);
+      _$$_EndedPillSheetValueToJson(this as _$_EndedPillSheetValue);
 }
 
 @freezed
@@ -213,7 +213,7 @@ abstract class BeganRestDurationValue implements _$BeganRestDurationValue {
   factory BeganRestDurationValue.fromJson(Map<String, dynamic> json) =>
       _$BeganRestDurationValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_BeganRestDurationValueToJson(this as _$_BeganRestDurationValue);
+      _$$_BeganRestDurationValueToJson(this as _$_BeganRestDurationValue);
 }
 
 @freezed
@@ -227,5 +227,5 @@ abstract class EndedRestDurationValue implements _$EndedRestDurationValue {
   factory EndedRestDurationValue.fromJson(Map<String, dynamic> json) =>
       _$EndedRestDurationValueFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_EndedRestDurationValueToJson(this as _$_EndedRestDurationValue);
+      _$$_EndedRestDurationValueToJson(this as _$_EndedRestDurationValue);
 }

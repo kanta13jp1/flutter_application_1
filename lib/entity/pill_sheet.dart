@@ -29,7 +29,7 @@ abstract class PillSheetTypeInfo with _$PillSheetTypeInfo {
   factory PillSheetTypeInfo.fromJson(Map<String, dynamic> json) =>
       _$PillSheetTypeInfoFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_PillSheetTypeInfoToJson(this as _$_PillSheetTypeInfo);
+      _$$_PillSheetTypeInfoToJson(this as _$_PillSheetTypeInfo);
 }
 
 @freezed
@@ -56,7 +56,7 @@ abstract class RestDuration with _$RestDuration {
   factory RestDuration.fromJson(Map<String, dynamic> json) =>
       _$RestDurationFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_RestDurationToJson(this as _$_RestDuration);
+      _$$_RestDurationToJson(this as _$_RestDuration);
 }
 
 @freezed
@@ -106,7 +106,7 @@ abstract class PillSheet implements _$PillSheet {
 
   factory PillSheet.fromJson(Map<String, dynamic> json) =>
       _$PillSheetFromJson(json);
-  Map<String, dynamic> toJson() => _$_$_PillSheetToJson(this as _$_PillSheet);
+  Map<String, dynamic> toJson() => _$$_PillSheetToJson(this as _$_PillSheet);
 
   PillSheetType get pillSheetType =>
       PillSheetTypeFunctions.fromRawPath(typeInfo.pillSheetTypeReferencePath);

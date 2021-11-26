@@ -113,6 +113,7 @@ abstract class $PillSheetModifiedHistoryCopyWith<$Res> {
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdAt});
 
+  $PillSheetModifiedHistoryValueCopyWith<$Res> get value;
   $PillSheetCopyWith<$Res>? get before;
   $PillSheetCopyWith<$Res>? get after;
 }
@@ -189,6 +190,13 @@ class _$PillSheetModifiedHistoryCopyWithImpl<$Res>
   }
 
   @override
+  $PillSheetModifiedHistoryValueCopyWith<$Res> get value {
+    return $PillSheetModifiedHistoryValueCopyWith<$Res>(_value.value, (value) {
+      return _then(_value.copyWith(value: value));
+    });
+  }
+
+  @override
   $PillSheetCopyWith<$Res>? get before {
     if (_value.before == null) {
       return null;
@@ -234,6 +242,8 @@ abstract class _$PillSheetModifiedHistoryCopyWith<$Res>
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdAt});
 
+  @override
+  $PillSheetModifiedHistoryValueCopyWith<$Res> get value;
   @override
   $PillSheetCopyWith<$Res>? get before;
   @override
@@ -384,7 +394,7 @@ class _$_PillSheetModifiedHistory extends _PillSheetModifiedHistory {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.actionType, actionType) ||
                 other.actionType == actionType) &&
-            const DeepCollectionEquality().equals(other.value, value) &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.pillSheetID, pillSheetID) ||
                 other.pillSheetID == pillSheetID) &&
             (identical(other.pillSheetGroupID, pillSheetGroupID) ||
@@ -407,7 +417,7 @@ class _$_PillSheetModifiedHistory extends _PillSheetModifiedHistory {
       runtimeType,
       id,
       actionType,
-      const DeepCollectionEquality().hash(value),
+      value,
       pillSheetID,
       pillSheetGroupID,
       beforePillSheetID,

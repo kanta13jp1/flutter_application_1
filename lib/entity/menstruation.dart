@@ -19,7 +19,7 @@ abstract class Menstruation with _$Menstruation {
   factory Menstruation.fromJson(Map<String, dynamic> json) =>
       _$MenstruationFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_MenstruationToJson(this as _$_Menstruation);
+      _$$_MenstruationToJson(this as _$_Menstruation);
   Menstruation._();
 
   @JsonSerializable(explicitToJson: true)

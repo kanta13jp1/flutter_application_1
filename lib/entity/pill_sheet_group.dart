@@ -37,7 +37,7 @@ abstract class PillSheetGroup implements _$PillSheetGroup {
   factory PillSheetGroup.fromJson(Map<String, dynamic> json) =>
       _$PillSheetGroupFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_PillSheetGroupToJson(this as _$_PillSheetGroup);
+      _$$_PillSheetGroupToJson(this as _$_PillSheetGroup);
 
   PillSheet? get activedPillSheet {
     final filtered = pillSheets.where((element) => element.isActive);

@@ -18,7 +18,7 @@ abstract class ReminderTime implements _$ReminderTime {
   factory ReminderTime.fromJson(Map<String, dynamic> json) =>
       _$ReminderTimeFromJson(json);
   Map<String, dynamic> toJson() =>
-      _$_$_ReminderTimeToJson(this as _$_ReminderTime);
+      _$$_ReminderTimeToJson(this as _$_ReminderTime);
 
   DateTime dateTime() {
     var t = DateTime.now().toLocal();
@@ -61,5 +61,5 @@ abstract class Setting implements _$Setting {
 
   factory Setting.fromJson(Map<String, dynamic> json) =>
       _$SettingFromJson(json);
-  Map<String, dynamic> toJson() => _$_$_SettingToJson(this as _$_Setting);
+  Map<String, dynamic> toJson() => _$$_SettingToJson(this as _$_Setting);
 }

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'pill_sheet_modified_history_value.dart';
 
@@ -47,7 +48,7 @@ class _$PillSheetModifiedHistoryValueTearOff {
     );
   }
 
-  PillSheetModifiedHistoryValue fromJson(Map<String, Object> json) {
+  PillSheetModifiedHistoryValue fromJson(Map<String, Object?> json) {
     return PillSheetModifiedHistoryValue.fromJson(json);
   }
 }
@@ -421,7 +422,7 @@ class _$_PillSheetModifiedHistoryValue extends _PillSheetModifiedHistoryValue {
 
   factory _$_PillSheetModifiedHistoryValue.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_PillSheetModifiedHistoryValueFromJson(json);
+      _$$_PillSheetModifiedHistoryValueFromJson(json);
 
   @override
   final DateTime? beginTrialDate;
@@ -462,54 +463,45 @@ class _$_PillSheetModifiedHistoryValue extends _PillSheetModifiedHistoryValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PillSheetModifiedHistoryValue &&
+        (other.runtimeType == runtimeType &&
+            other is _PillSheetModifiedHistoryValue &&
             (identical(other.beginTrialDate, beginTrialDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.beginTrialDate, beginTrialDate)) &&
+                other.beginTrialDate == beginTrialDate) &&
             (identical(other.createdPillSheet, createdPillSheet) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdPillSheet, createdPillSheet)) &&
+                other.createdPillSheet == createdPillSheet) &&
             (identical(other.automaticallyRecordedLastTakenDate,
                     automaticallyRecordedLastTakenDate) ||
-                const DeepCollectionEquality().equals(
-                    other.automaticallyRecordedLastTakenDate,
-                    automaticallyRecordedLastTakenDate)) &&
+                other.automaticallyRecordedLastTakenDate ==
+                    automaticallyRecordedLastTakenDate) &&
             (identical(other.deletedPillSheet, deletedPillSheet) ||
-                const DeepCollectionEquality()
-                    .equals(other.deletedPillSheet, deletedPillSheet)) &&
+                other.deletedPillSheet == deletedPillSheet) &&
             (identical(other.takenPill, takenPill) ||
-                const DeepCollectionEquality()
-                    .equals(other.takenPill, takenPill)) &&
+                other.takenPill == takenPill) &&
             (identical(other.revertTakenPill, revertTakenPill) ||
-                const DeepCollectionEquality()
-                    .equals(other.revertTakenPill, revertTakenPill)) &&
+                other.revertTakenPill == revertTakenPill) &&
             (identical(other.changedPillNumber, changedPillNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.changedPillNumber, changedPillNumber)) &&
+                other.changedPillNumber == changedPillNumber) &&
             (identical(other.endedPillSheet, endedPillSheet) ||
-                const DeepCollectionEquality()
-                    .equals(other.endedPillSheet, endedPillSheet)) &&
+                other.endedPillSheet == endedPillSheet) &&
             (identical(other.beganRestDurationValue, beganRestDurationValue) ||
-                const DeepCollectionEquality().equals(
-                    other.beganRestDurationValue, beganRestDurationValue)) &&
+                other.beganRestDurationValue == beganRestDurationValue) &&
             (identical(other.endedRestDurationValue, endedRestDurationValue) ||
-                const DeepCollectionEquality().equals(
-                    other.endedRestDurationValue, endedRestDurationValue)));
+                other.endedRestDurationValue == endedRestDurationValue));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(beginTrialDate) ^
-      const DeepCollectionEquality().hash(createdPillSheet) ^
-      const DeepCollectionEquality().hash(automaticallyRecordedLastTakenDate) ^
-      const DeepCollectionEquality().hash(deletedPillSheet) ^
-      const DeepCollectionEquality().hash(takenPill) ^
-      const DeepCollectionEquality().hash(revertTakenPill) ^
-      const DeepCollectionEquality().hash(changedPillNumber) ^
-      const DeepCollectionEquality().hash(endedPillSheet) ^
-      const DeepCollectionEquality().hash(beganRestDurationValue) ^
-      const DeepCollectionEquality().hash(endedRestDurationValue);
+  int get hashCode => Object.hash(
+      runtimeType,
+      beginTrialDate,
+      createdPillSheet,
+      automaticallyRecordedLastTakenDate,
+      deletedPillSheet,
+      takenPill,
+      revertTakenPill,
+      changedPillNumber,
+      endedPillSheet,
+      beganRestDurationValue,
+      endedRestDurationValue);
 
   @JsonKey(ignore: true)
   @override
@@ -519,7 +511,7 @@ class _$_PillSheetModifiedHistoryValue extends _PillSheetModifiedHistoryValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PillSheetModifiedHistoryValueToJson(this);
+    return _$$_PillSheetModifiedHistoryValueToJson(this);
   }
 }
 
@@ -544,33 +536,26 @@ abstract class _PillSheetModifiedHistoryValue
       _$_PillSheetModifiedHistoryValue.fromJson;
 
   @override
-  DateTime? get beginTrialDate => throw _privateConstructorUsedError;
+  DateTime? get beginTrialDate;
   @override
-  CreatedPillSheetValue? get createdPillSheet =>
-      throw _privateConstructorUsedError;
+  CreatedPillSheetValue? get createdPillSheet;
   @override
   AutomaticallyRecordedLastTakenDateValue?
-      get automaticallyRecordedLastTakenDate =>
-          throw _privateConstructorUsedError;
+      get automaticallyRecordedLastTakenDate;
   @override
-  DeletedPillSheetValue? get deletedPillSheet =>
-      throw _privateConstructorUsedError;
+  DeletedPillSheetValue? get deletedPillSheet;
   @override
-  TakenPillValue? get takenPill => throw _privateConstructorUsedError;
+  TakenPillValue? get takenPill;
   @override
-  RevertTakenPillValue? get revertTakenPill =>
-      throw _privateConstructorUsedError;
+  RevertTakenPillValue? get revertTakenPill;
   @override
-  ChangedPillNumberValue? get changedPillNumber =>
-      throw _privateConstructorUsedError;
+  ChangedPillNumberValue? get changedPillNumber;
   @override
-  EndedPillSheetValue? get endedPillSheet => throw _privateConstructorUsedError;
+  EndedPillSheetValue? get endedPillSheet;
   @override
-  BeganRestDurationValue? get beganRestDurationValue =>
-      throw _privateConstructorUsedError;
+  BeganRestDurationValue? get beganRestDurationValue;
   @override
-  EndedRestDurationValue? get endedRestDurationValue =>
-      throw _privateConstructorUsedError;
+  EndedRestDurationValue? get endedRestDurationValue;
   @override
   @JsonKey(ignore: true)
   _$PillSheetModifiedHistoryValueCopyWith<_PillSheetModifiedHistoryValue>
@@ -596,7 +581,7 @@ class _$CreatedPillSheetValueTearOff {
     );
   }
 
-  CreatedPillSheetValue fromJson(Map<String, Object> json) {
+  CreatedPillSheetValue fromJson(Map<String, Object?> json) {
     return CreatedPillSheetValue.fromJson(json);
   }
 }
@@ -709,7 +694,7 @@ class _$_CreatedPillSheetValue extends _CreatedPillSheetValue {
       : super._();
 
   factory _$_CreatedPillSheetValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreatedPillSheetValueFromJson(json);
+      _$$_CreatedPillSheetValueFromJson(json);
 
   @override
   @JsonKey(
@@ -728,20 +713,17 @@ class _$_CreatedPillSheetValue extends _CreatedPillSheetValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CreatedPillSheetValue &&
+        (other.runtimeType == runtimeType &&
+            other is _CreatedPillSheetValue &&
             (identical(other.pillSheetCreatedAt, pillSheetCreatedAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.pillSheetCreatedAt, pillSheetCreatedAt)) &&
-            (identical(other.pillSheetIDs, pillSheetIDs) ||
-                const DeepCollectionEquality()
-                    .equals(other.pillSheetIDs, pillSheetIDs)));
+                other.pillSheetCreatedAt == pillSheetCreatedAt) &&
+            const DeepCollectionEquality()
+                .equals(other.pillSheetIDs, pillSheetIDs));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(pillSheetCreatedAt) ^
-      const DeepCollectionEquality().hash(pillSheetIDs);
+  int get hashCode => Object.hash(runtimeType, pillSheetCreatedAt,
+      const DeepCollectionEquality().hash(pillSheetIDs));
 
   @JsonKey(ignore: true)
   @override
@@ -751,7 +733,7 @@ class _$_CreatedPillSheetValue extends _CreatedPillSheetValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreatedPillSheetValueToJson(this);
+    return _$$_CreatedPillSheetValueToJson(this);
   }
 }
 
@@ -769,9 +751,9 @@ abstract class _CreatedPillSheetValue extends CreatedPillSheetValue {
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get pillSheetCreatedAt => throw _privateConstructorUsedError;
+  DateTime get pillSheetCreatedAt;
   @override
-  List<String> get pillSheetIDs => throw _privateConstructorUsedError;
+  List<String> get pillSheetIDs;
   @override
   @JsonKey(ignore: true)
   _$CreatedPillSheetValueCopyWith<_CreatedPillSheetValue> get copyWith =>
@@ -803,7 +785,7 @@ class _$AutomaticallyRecordedLastTakenDateValueTearOff {
     );
   }
 
-  AutomaticallyRecordedLastTakenDateValue fromJson(Map<String, Object> json) {
+  AutomaticallyRecordedLastTakenDateValue fromJson(Map<String, Object?> json) {
     return AutomaticallyRecordedLastTakenDateValue.fromJson(json);
   }
 }
@@ -960,7 +942,7 @@ class _$_AutomaticallyRecordedLastTakenDateValue
 
   factory _$_AutomaticallyRecordedLastTakenDateValue.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_AutomaticallyRecordedLastTakenDateValueFromJson(json);
+      _$$_AutomaticallyRecordedLastTakenDateValueFromJson(json);
 
   @override
   @JsonKey(
@@ -985,31 +967,23 @@ class _$_AutomaticallyRecordedLastTakenDateValue
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AutomaticallyRecordedLastTakenDateValue &&
+        (other.runtimeType == runtimeType &&
+            other is _AutomaticallyRecordedLastTakenDateValue &&
             (identical(other.beforeLastTakenDate, beforeLastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.beforeLastTakenDate, beforeLastTakenDate)) &&
+                other.beforeLastTakenDate == beforeLastTakenDate) &&
             (identical(other.afterLastTakenDate, afterLastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.afterLastTakenDate, afterLastTakenDate)) &&
+                other.afterLastTakenDate == afterLastTakenDate) &&
             (identical(other.beforeLastTakenPillNumber,
                     beforeLastTakenPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.beforeLastTakenPillNumber,
-                    beforeLastTakenPillNumber)) &&
+                other.beforeLastTakenPillNumber == beforeLastTakenPillNumber) &&
             (identical(
                     other.afterLastTakenPillNumber, afterLastTakenPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.afterLastTakenPillNumber, afterLastTakenPillNumber)));
+                other.afterLastTakenPillNumber == afterLastTakenPillNumber));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(beforeLastTakenDate) ^
-      const DeepCollectionEquality().hash(afterLastTakenDate) ^
-      const DeepCollectionEquality().hash(beforeLastTakenPillNumber) ^
-      const DeepCollectionEquality().hash(afterLastTakenPillNumber);
+  int get hashCode => Object.hash(runtimeType, beforeLastTakenDate,
+      afterLastTakenDate, beforeLastTakenPillNumber, afterLastTakenPillNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -1020,7 +994,7 @@ class _$_AutomaticallyRecordedLastTakenDateValue
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AutomaticallyRecordedLastTakenDateValueToJson(this);
+    return _$$_AutomaticallyRecordedLastTakenDateValueToJson(this);
   }
 }
 
@@ -1043,16 +1017,16 @@ abstract class _AutomaticallyRecordedLastTakenDateValue
   @JsonKey(
       fromJson: TimestampConverter.timestampToDateTime,
       toJson: TimestampConverter.dateTimeToTimestamp)
-  DateTime? get beforeLastTakenDate => throw _privateConstructorUsedError;
+  DateTime? get beforeLastTakenDate;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get afterLastTakenDate => throw _privateConstructorUsedError;
+  DateTime get afterLastTakenDate;
   @override
-  int get beforeLastTakenPillNumber => throw _privateConstructorUsedError;
+  int get beforeLastTakenPillNumber;
   @override
-  int get afterLastTakenPillNumber => throw _privateConstructorUsedError;
+  int get afterLastTakenPillNumber;
   @override
   @JsonKey(ignore: true)
   _$AutomaticallyRecordedLastTakenDateValueCopyWith<
@@ -1079,7 +1053,7 @@ class _$DeletedPillSheetValueTearOff {
     );
   }
 
-  DeletedPillSheetValue fromJson(Map<String, Object> json) {
+  DeletedPillSheetValue fromJson(Map<String, Object?> json) {
     return DeletedPillSheetValue.fromJson(json);
   }
 }
@@ -1192,7 +1166,7 @@ class _$_DeletedPillSheetValue extends _DeletedPillSheetValue {
       : super._();
 
   factory _$_DeletedPillSheetValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeletedPillSheetValueFromJson(json);
+      _$$_DeletedPillSheetValueFromJson(json);
 
   @override
   @JsonKey(
@@ -1211,20 +1185,17 @@ class _$_DeletedPillSheetValue extends _DeletedPillSheetValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DeletedPillSheetValue &&
+        (other.runtimeType == runtimeType &&
+            other is _DeletedPillSheetValue &&
             (identical(other.pillSheetDeletedAt, pillSheetDeletedAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.pillSheetDeletedAt, pillSheetDeletedAt)) &&
-            (identical(other.pillSheetIDs, pillSheetIDs) ||
-                const DeepCollectionEquality()
-                    .equals(other.pillSheetIDs, pillSheetIDs)));
+                other.pillSheetDeletedAt == pillSheetDeletedAt) &&
+            const DeepCollectionEquality()
+                .equals(other.pillSheetIDs, pillSheetIDs));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(pillSheetDeletedAt) ^
-      const DeepCollectionEquality().hash(pillSheetIDs);
+  int get hashCode => Object.hash(runtimeType, pillSheetDeletedAt,
+      const DeepCollectionEquality().hash(pillSheetIDs));
 
   @JsonKey(ignore: true)
   @override
@@ -1234,7 +1205,7 @@ class _$_DeletedPillSheetValue extends _DeletedPillSheetValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeletedPillSheetValueToJson(this);
+    return _$$_DeletedPillSheetValueToJson(this);
   }
 }
 
@@ -1252,9 +1223,9 @@ abstract class _DeletedPillSheetValue extends DeletedPillSheetValue {
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get pillSheetDeletedAt => throw _privateConstructorUsedError;
+  DateTime get pillSheetDeletedAt;
   @override
-  List<String> get pillSheetIDs => throw _privateConstructorUsedError;
+  List<String> get pillSheetIDs;
   @override
   @JsonKey(ignore: true)
   _$DeletedPillSheetValueCopyWith<_DeletedPillSheetValue> get copyWith =>
@@ -1284,7 +1255,7 @@ class _$TakenPillValueTearOff {
     );
   }
 
-  TakenPillValue fromJson(Map<String, Object> json) {
+  TakenPillValue fromJson(Map<String, Object?> json) {
     return TakenPillValue.fromJson(json);
   }
 }
@@ -1431,7 +1402,7 @@ class _$_TakenPillValue extends _TakenPillValue {
       : super._();
 
   factory _$_TakenPillValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_TakenPillValueFromJson(json);
+      _$$_TakenPillValueFromJson(json);
 
   @override
   @JsonKey(
@@ -1456,31 +1427,23 @@ class _$_TakenPillValue extends _TakenPillValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TakenPillValue &&
+        (other.runtimeType == runtimeType &&
+            other is _TakenPillValue &&
             (identical(other.beforeLastTakenDate, beforeLastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.beforeLastTakenDate, beforeLastTakenDate)) &&
+                other.beforeLastTakenDate == beforeLastTakenDate) &&
             (identical(other.afterLastTakenDate, afterLastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.afterLastTakenDate, afterLastTakenDate)) &&
+                other.afterLastTakenDate == afterLastTakenDate) &&
             (identical(other.beforeLastTakenPillNumber,
                     beforeLastTakenPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.beforeLastTakenPillNumber,
-                    beforeLastTakenPillNumber)) &&
+                other.beforeLastTakenPillNumber == beforeLastTakenPillNumber) &&
             (identical(
                     other.afterLastTakenPillNumber, afterLastTakenPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.afterLastTakenPillNumber, afterLastTakenPillNumber)));
+                other.afterLastTakenPillNumber == afterLastTakenPillNumber));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(beforeLastTakenDate) ^
-      const DeepCollectionEquality().hash(afterLastTakenDate) ^
-      const DeepCollectionEquality().hash(beforeLastTakenPillNumber) ^
-      const DeepCollectionEquality().hash(afterLastTakenPillNumber);
+  int get hashCode => Object.hash(runtimeType, beforeLastTakenDate,
+      afterLastTakenDate, beforeLastTakenPillNumber, afterLastTakenPillNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -1489,7 +1452,7 @@ class _$_TakenPillValue extends _TakenPillValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TakenPillValueToJson(this);
+    return _$$_TakenPillValueToJson(this);
   }
 }
 
@@ -1510,16 +1473,16 @@ abstract class _TakenPillValue extends TakenPillValue {
   @JsonKey(
       fromJson: TimestampConverter.timestampToDateTime,
       toJson: TimestampConverter.dateTimeToTimestamp)
-  DateTime? get beforeLastTakenDate => throw _privateConstructorUsedError;
+  DateTime? get beforeLastTakenDate;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get afterLastTakenDate => throw _privateConstructorUsedError;
+  DateTime get afterLastTakenDate;
   @override
-  int get beforeLastTakenPillNumber => throw _privateConstructorUsedError;
+  int get beforeLastTakenPillNumber;
   @override
-  int get afterLastTakenPillNumber => throw _privateConstructorUsedError;
+  int get afterLastTakenPillNumber;
   @override
   @JsonKey(ignore: true)
   _$TakenPillValueCopyWith<_TakenPillValue> get copyWith =>
@@ -1549,7 +1512,7 @@ class _$RevertTakenPillValueTearOff {
     );
   }
 
-  RevertTakenPillValue fromJson(Map<String, Object> json) {
+  RevertTakenPillValue fromJson(Map<String, Object?> json) {
     return RevertTakenPillValue.fromJson(json);
   }
 }
@@ -1696,7 +1659,7 @@ class _$_RevertTakenPillValue extends _RevertTakenPillValue {
       : super._();
 
   factory _$_RevertTakenPillValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_RevertTakenPillValueFromJson(json);
+      _$$_RevertTakenPillValueFromJson(json);
 
   @override
   @JsonKey(
@@ -1721,31 +1684,23 @@ class _$_RevertTakenPillValue extends _RevertTakenPillValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RevertTakenPillValue &&
+        (other.runtimeType == runtimeType &&
+            other is _RevertTakenPillValue &&
             (identical(other.beforeLastTakenDate, beforeLastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.beforeLastTakenDate, beforeLastTakenDate)) &&
+                other.beforeLastTakenDate == beforeLastTakenDate) &&
             (identical(other.afterLastTakenDate, afterLastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.afterLastTakenDate, afterLastTakenDate)) &&
+                other.afterLastTakenDate == afterLastTakenDate) &&
             (identical(other.beforeLastTakenPillNumber,
                     beforeLastTakenPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.beforeLastTakenPillNumber,
-                    beforeLastTakenPillNumber)) &&
+                other.beforeLastTakenPillNumber == beforeLastTakenPillNumber) &&
             (identical(
                     other.afterLastTakenPillNumber, afterLastTakenPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.afterLastTakenPillNumber, afterLastTakenPillNumber)));
+                other.afterLastTakenPillNumber == afterLastTakenPillNumber));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(beforeLastTakenDate) ^
-      const DeepCollectionEquality().hash(afterLastTakenDate) ^
-      const DeepCollectionEquality().hash(beforeLastTakenPillNumber) ^
-      const DeepCollectionEquality().hash(afterLastTakenPillNumber);
+  int get hashCode => Object.hash(runtimeType, beforeLastTakenDate,
+      afterLastTakenDate, beforeLastTakenPillNumber, afterLastTakenPillNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -1755,7 +1710,7 @@ class _$_RevertTakenPillValue extends _RevertTakenPillValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RevertTakenPillValueToJson(this);
+    return _$$_RevertTakenPillValueToJson(this);
   }
 }
 
@@ -1776,16 +1731,16 @@ abstract class _RevertTakenPillValue extends RevertTakenPillValue {
   @JsonKey(
       fromJson: TimestampConverter.timestampToDateTime,
       toJson: TimestampConverter.dateTimeToTimestamp)
-  DateTime? get beforeLastTakenDate => throw _privateConstructorUsedError;
+  DateTime? get beforeLastTakenDate;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get afterLastTakenDate => throw _privateConstructorUsedError;
+  DateTime get afterLastTakenDate;
   @override
-  int get beforeLastTakenPillNumber => throw _privateConstructorUsedError;
+  int get beforeLastTakenPillNumber;
   @override
-  int get afterLastTakenPillNumber => throw _privateConstructorUsedError;
+  int get afterLastTakenPillNumber;
   @override
   @JsonKey(ignore: true)
   _$RevertTakenPillValueCopyWith<_RevertTakenPillValue> get copyWith =>
@@ -1820,7 +1775,7 @@ class _$ChangedPillNumberValueTearOff {
     );
   }
 
-  ChangedPillNumberValue fromJson(Map<String, Object> json) {
+  ChangedPillNumberValue fromJson(Map<String, Object?> json) {
     return ChangedPillNumberValue.fromJson(json);
   }
 }
@@ -1995,7 +1950,7 @@ class _$_ChangedPillNumberValue extends _ChangedPillNumberValue {
       : super._();
 
   factory _$_ChangedPillNumberValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_ChangedPillNumberValueFromJson(json);
+      _$$_ChangedPillNumberValueFromJson(json);
 
   @override
   @JsonKey(
@@ -2026,36 +1981,31 @@ class _$_ChangedPillNumberValue extends _ChangedPillNumberValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ChangedPillNumberValue &&
+        (other.runtimeType == runtimeType &&
+            other is _ChangedPillNumberValue &&
             (identical(other.beforeBeginingDate, beforeBeginingDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.beforeBeginingDate, beforeBeginingDate)) &&
+                other.beforeBeginingDate == beforeBeginingDate) &&
             (identical(other.afterBeginingDate, afterBeginingDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.afterBeginingDate, afterBeginingDate)) &&
+                other.afterBeginingDate == afterBeginingDate) &&
             (identical(other.beforeTodayPillNumber, beforeTodayPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.beforeTodayPillNumber, beforeTodayPillNumber)) &&
+                other.beforeTodayPillNumber == beforeTodayPillNumber) &&
             (identical(other.afterTodayPillNumber, afterTodayPillNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.afterTodayPillNumber, afterTodayPillNumber)) &&
+                other.afterTodayPillNumber == afterTodayPillNumber) &&
             (identical(other.beforeGroupIndex, beforeGroupIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.beforeGroupIndex, beforeGroupIndex)) &&
+                other.beforeGroupIndex == beforeGroupIndex) &&
             (identical(other.afterGroupIndex, afterGroupIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.afterGroupIndex, afterGroupIndex)));
+                other.afterGroupIndex == afterGroupIndex));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(beforeBeginingDate) ^
-      const DeepCollectionEquality().hash(afterBeginingDate) ^
-      const DeepCollectionEquality().hash(beforeTodayPillNumber) ^
-      const DeepCollectionEquality().hash(afterTodayPillNumber) ^
-      const DeepCollectionEquality().hash(beforeGroupIndex) ^
-      const DeepCollectionEquality().hash(afterGroupIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      beforeBeginingDate,
+      afterBeginingDate,
+      beforeTodayPillNumber,
+      afterTodayPillNumber,
+      beforeGroupIndex,
+      afterGroupIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -2065,7 +2015,7 @@ class _$_ChangedPillNumberValue extends _ChangedPillNumberValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ChangedPillNumberValueToJson(this);
+    return _$$_ChangedPillNumberValueToJson(this);
   }
 }
 
@@ -2088,20 +2038,20 @@ abstract class _ChangedPillNumberValue extends ChangedPillNumberValue {
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get beforeBeginingDate => throw _privateConstructorUsedError;
+  DateTime get beforeBeginingDate;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get afterBeginingDate => throw _privateConstructorUsedError;
+  DateTime get afterBeginingDate;
   @override
-  int get beforeTodayPillNumber => throw _privateConstructorUsedError;
+  int get beforeTodayPillNumber;
   @override
-  int get afterTodayPillNumber => throw _privateConstructorUsedError;
+  int get afterTodayPillNumber;
   @override
-  int get beforeGroupIndex => throw _privateConstructorUsedError;
+  int get beforeGroupIndex;
   @override
-  int get afterGroupIndex => throw _privateConstructorUsedError;
+  int get afterGroupIndex;
   @override
   @JsonKey(ignore: true)
   _$ChangedPillNumberValueCopyWith<_ChangedPillNumberValue> get copyWith =>
@@ -2127,7 +2077,7 @@ class _$EndedPillSheetValueTearOff {
     );
   }
 
-  EndedPillSheetValue fromJson(Map<String, Object> json) {
+  EndedPillSheetValue fromJson(Map<String, Object?> json) {
     return EndedPillSheetValue.fromJson(json);
   }
 }
@@ -2246,7 +2196,7 @@ class _$_EndedPillSheetValue extends _EndedPillSheetValue {
       : super._();
 
   factory _$_EndedPillSheetValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_EndedPillSheetValueFromJson(json);
+      _$$_EndedPillSheetValueFromJson(json);
 
   @override
   @JsonKey(
@@ -2267,20 +2217,16 @@ class _$_EndedPillSheetValue extends _EndedPillSheetValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EndedPillSheetValue &&
+        (other.runtimeType == runtimeType &&
+            other is _EndedPillSheetValue &&
             (identical(other.endRecordDate, endRecordDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.endRecordDate, endRecordDate)) &&
+                other.endRecordDate == endRecordDate) &&
             (identical(other.lastTakenDate, lastTakenDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastTakenDate, lastTakenDate)));
+                other.lastTakenDate == lastTakenDate));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(endRecordDate) ^
-      const DeepCollectionEquality().hash(lastTakenDate);
+  int get hashCode => Object.hash(runtimeType, endRecordDate, lastTakenDate);
 
   @JsonKey(ignore: true)
   @override
@@ -2290,7 +2236,7 @@ class _$_EndedPillSheetValue extends _EndedPillSheetValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_EndedPillSheetValueToJson(this);
+    return _$$_EndedPillSheetValueToJson(this);
   }
 }
 
@@ -2309,12 +2255,12 @@ abstract class _EndedPillSheetValue extends EndedPillSheetValue {
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get endRecordDate => throw _privateConstructorUsedError;
+  DateTime get endRecordDate;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-  DateTime get lastTakenDate => throw _privateConstructorUsedError;
+  DateTime get lastTakenDate;
   @override
   @JsonKey(ignore: true)
   _$EndedPillSheetValueCopyWith<_EndedPillSheetValue> get copyWith =>
@@ -2336,7 +2282,7 @@ class _$BeganRestDurationValueTearOff {
     );
   }
 
-  BeganRestDurationValue fromJson(Map<String, Object> json) {
+  BeganRestDurationValue fromJson(Map<String, Object?> json) {
     return BeganRestDurationValue.fromJson(json);
   }
 }
@@ -2437,7 +2383,7 @@ class _$_BeganRestDurationValue extends _BeganRestDurationValue {
   _$_BeganRestDurationValue({required this.restDuration}) : super._();
 
   factory _$_BeganRestDurationValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_BeganRestDurationValueFromJson(json);
+      _$$_BeganRestDurationValueFromJson(json);
 
   @override
   final RestDuration restDuration;
@@ -2450,15 +2396,14 @@ class _$_BeganRestDurationValue extends _BeganRestDurationValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BeganRestDurationValue &&
+        (other.runtimeType == runtimeType &&
+            other is _BeganRestDurationValue &&
             (identical(other.restDuration, restDuration) ||
-                const DeepCollectionEquality()
-                    .equals(other.restDuration, restDuration)));
+                other.restDuration == restDuration));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(restDuration);
+  int get hashCode => Object.hash(runtimeType, restDuration);
 
   @JsonKey(ignore: true)
   @override
@@ -2468,7 +2413,7 @@ class _$_BeganRestDurationValue extends _BeganRestDurationValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_BeganRestDurationValueToJson(this);
+    return _$$_BeganRestDurationValueToJson(this);
   }
 }
 
@@ -2481,7 +2426,7 @@ abstract class _BeganRestDurationValue extends BeganRestDurationValue {
       _$_BeganRestDurationValue.fromJson;
 
   @override
-  RestDuration get restDuration => throw _privateConstructorUsedError;
+  RestDuration get restDuration;
   @override
   @JsonKey(ignore: true)
   _$BeganRestDurationValueCopyWith<_BeganRestDurationValue> get copyWith =>
@@ -2503,7 +2448,7 @@ class _$EndedRestDurationValueTearOff {
     );
   }
 
-  EndedRestDurationValue fromJson(Map<String, Object> json) {
+  EndedRestDurationValue fromJson(Map<String, Object?> json) {
     return EndedRestDurationValue.fromJson(json);
   }
 }
@@ -2604,7 +2549,7 @@ class _$_EndedRestDurationValue extends _EndedRestDurationValue {
   _$_EndedRestDurationValue({required this.restDuration}) : super._();
 
   factory _$_EndedRestDurationValue.fromJson(Map<String, dynamic> json) =>
-      _$_$_EndedRestDurationValueFromJson(json);
+      _$$_EndedRestDurationValueFromJson(json);
 
   @override
   final RestDuration restDuration;
@@ -2617,15 +2562,14 @@ class _$_EndedRestDurationValue extends _EndedRestDurationValue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EndedRestDurationValue &&
+        (other.runtimeType == runtimeType &&
+            other is _EndedRestDurationValue &&
             (identical(other.restDuration, restDuration) ||
-                const DeepCollectionEquality()
-                    .equals(other.restDuration, restDuration)));
+                other.restDuration == restDuration));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(restDuration);
+  int get hashCode => Object.hash(runtimeType, restDuration);
 
   @JsonKey(ignore: true)
   @override
@@ -2635,7 +2579,7 @@ class _$_EndedRestDurationValue extends _EndedRestDurationValue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_EndedRestDurationValueToJson(this);
+    return _$$_EndedRestDurationValueToJson(this);
   }
 }
 
@@ -2648,7 +2592,7 @@ abstract class _EndedRestDurationValue extends EndedRestDurationValue {
       _$_EndedRestDurationValue.fromJson;
 
   @override
-  RestDuration get restDuration => throw _privateConstructorUsedError;
+  RestDuration get restDuration;
   @override
   @JsonKey(ignore: true)
   _$EndedRestDurationValueCopyWith<_EndedRestDurationValue> get copyWith =>
