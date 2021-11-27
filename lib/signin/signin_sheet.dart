@@ -20,7 +20,7 @@ abstract class SigninSheetConst {
   static final double height = 340;
 }
 
-class SigninSheet extends HookWidget {
+class SigninSheet extends HookConsumerWidget {
   final SigninSheetStateContext stateContext;
   final Function(LinkAccountType) callback;
 
@@ -29,9 +29,9 @@ class SigninSheet extends HookWidget {
     required this.callback,
   });
   @override
-  Widget build(BuildContext context) {
-    final store = useProvider(signinSheetStoreProvider(stateContext));
-    final state = useProvider(signinSheetStoreProvider(stateContext).state);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final store = ref.watch(signinSheetStoreProvider(stateContext).notifier);
+    final state = ref.watch(signinSheetStoreProvider(stateContext));
     return HUD(
       shown: state.isLoading,
       child: UniversalErrorPage(
