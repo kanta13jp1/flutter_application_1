@@ -14,11 +14,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CalendarPage extends HookWidget {
+class CalendarPage extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final store = useProvider(calendarPageStateProvider);
-    final state = useProvider(calendarPageStateProvider.state);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final store = ref.watch(calendarPageStateProvider.notifier);
+    final state = ref.watch(calendarPageStateProvider);
     homeKey.currentState?.diaries = state.diariesForMonth;
 
     if (state.shouldShowIndicator) {

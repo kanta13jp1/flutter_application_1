@@ -50,10 +50,10 @@ Future<void> initializePurchase(String uid) async {
   await Purchases.setDebugLogsEnabled(Environment.isDevelopment);
   await Purchases.setup(Secret.revenueCatPublicAPIKey, appUserId: uid);
   Purchases.addPurchaserInfoUpdateListener(callUpdatePurchaseInfo);
-  await syncPurchaseInfo();
 }
 
 void connectToEmulator() {
+  await syncPurchaseInfo();
   final domain = Platform.isAndroid ? '10.0.2.2' : 'localhost';
   FirebaseFirestore.instance.settings = Settings(
       persistenceEnabled: false, host: '$domain:8080', sslEnabled: false);

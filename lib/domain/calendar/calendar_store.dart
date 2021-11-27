@@ -12,7 +12,8 @@ import 'package:flutter_application_1/domain/calendar/calendar_state.dart';
 import 'package:flutter_application_1/service/user.dart';
 import 'package:flutter_application_1/util/datetime/date_compare.dart';
 
-final calendarPageStateProvider = StateNotifierProvider<CalendarPageStateStore>(
+final calendarPageStateProvider =
+    StateNotifierProvider<CalendarPageStateStore, CalendarPageState>(
   (ref) => CalendarPageStateStore(
     ref.watch(menstruationServiceProvider),
     ref.watch(settingServiceProvider),
