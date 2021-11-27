@@ -52,7 +52,7 @@ Future<void> initializePurchase(String uid) async {
   Purchases.addPurchaserInfoUpdateListener(callUpdatePurchaseInfo);
 }
 
-void connectToEmulator() {
+void connectToEmulator() async {
   await syncPurchaseInfo();
   final domain = Platform.isAndroid ? '10.0.2.2' : 'localhost';
   FirebaseFirestore.instance.settings = Settings(
