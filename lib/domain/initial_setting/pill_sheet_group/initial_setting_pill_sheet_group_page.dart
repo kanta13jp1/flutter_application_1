@@ -20,11 +20,11 @@ import 'package:flutter_application_1/signin/signin_sheet_state.dart';
 import 'package:flutter_application_1/entity/link_account_type.dart';
 import 'package:flutter_application_1/entity/pill_sheet_type.dart';
 
-class InitialSettingPillSheetGroupPage extends HookWidget {
+class InitialSettingPillSheetGroupPage extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final store = useProvider(initialSettingStoreProvider);
-    final state = useProvider(initialSettingStoreProvider.state);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final store = ref.watch(initialSettingStoreProvider.notifier);
+    final state = ref.watch(initialSettingStoreProvider);
     if (state.isAccountCooperationDidEnd) {
       Future(() async {
         if (await store.canEndInitialSetting()) {
